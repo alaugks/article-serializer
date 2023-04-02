@@ -1,0 +1,25 @@
+jms_serializer:
+    visitors:
+        xml_serialization:
+            format_output: '%kernel.debug%'
+
+    default_context:
+        serialization:
+            serialize_null: '%serializer_skip_null_values%'
+
+when@prod:
+    jms_serializer:
+        visitors:
+            json_serialization:
+                options:
+                    - JSON_UNESCAPED_SLASHES
+                    - JSON_PRESERVE_ZERO_FRACTION
+
+when@dev:
+    jms_serializer:
+        visitors:
+            json_serialization:
+                options:
+                    - JSON_PRETTY_PRINT
+                    - JSON_UNESCAPED_SLASHES
+                    - JSON_PRESERVE_ZERO_FRACTION

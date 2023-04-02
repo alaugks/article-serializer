@@ -1,0 +1,20 @@
+parameters:
+    serializer_skip_null_values: false
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+
+#    app.handler.mapping_handler:
+#        class: 'App\Handler\MappingTableHandler'
+#        tags:
+#            - { name: 'jms_serializer.handler', type: 'MappingTable', format: 'json' }
