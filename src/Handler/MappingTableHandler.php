@@ -16,19 +16,21 @@ class MappingTableHandler implements SubscribingHandlerInterface
     {
         $methods = [];
 
-        $methods[] = [
-            'type' => self::HANDLER_TYPE,
-            'format' => 'json',
-            'direction' => GraphNavigatorInterface::DIRECTION_SERIALIZATION,
-            'method' => 'serialize',
-        ];
+        foreach (['json', 'xml'] as $format) {
+            $methods[] = [
+                'type' => self::HANDLER_TYPE,
+                'format' => $format,
+                'direction' => GraphNavigatorInterface::DIRECTION_SERIALIZATION,
+                'method' => 'serialize',
+            ];
 
-        $methods[] = [
-            'type' => self::HANDLER_TYPE,
-            'direction' => GraphNavigatorInterface::DIRECTION_DESERIALIZATION,
-            'format' => 'json',
-            'method' => 'deserialize',
-        ];
+            $methods[] = [
+                'type' => self::HANDLER_TYPE,
+                'direction' => GraphNavigatorInterface::DIRECTION_DESERIALIZATION,
+                'format' => $format,
+                'method' => 'deserialize',
+            ];
+        }
 
         return $methods;
     }
