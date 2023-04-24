@@ -28,16 +28,16 @@ class ContactDto
     private ?\DateTimeInterface $birthdate = null;
 
     // Example as JSON:
-    #[Type("MappingTable<'{\"1\": \"MALE\", \"2\": \"FEMALE\", \"6\": \"DIVERS\"}'>")]
+    // #[Type("MappingTable<'{\"1\": \"MALE\", \"2\": \"FEMALE\", \"6\": \"DIVERS\"}'>")]
     // Example with constant:
-    // #[Type("MappingTable<'App\Dto\ContactDto::SALUTATION'>")]
+    #[Type("MappingTable<'App\Dto\ContactDto::SALUTATION'>")]
     #[SerializedName('46')]
     private ?string $salutation = null;
 
     // Example as JSON:
-    #[Type("MappingTable<'{\"1\": true, \"2\": false}'>")]
+    // #[Type("MappingTable<'{\"1\": true, \"2\": false}'>")]
     // Example with constant:
-    // #[Type("MappingTable<'App\Dto\ContactDto::MARKETING_INFORMATION'>")]
+    #[Type("MappingTable<'App\Dto\ContactDto::MARKETING_INFORMATION'>")]
     #[SerializedName('100674')]
     private ?bool $marketingInformation = null;
 
