@@ -6,6 +6,9 @@ use App\Dto\ContactDto;
 use App\Service\CrmSerializerService;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
+/**
+ * @SuppressWarnings("php:S1192")
+ */
 class CrmSerializerServiceTest extends KernelTestCase
 {
     private CrmSerializerService $serializer;

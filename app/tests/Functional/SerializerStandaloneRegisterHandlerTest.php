@@ -18,11 +18,11 @@ class SerializerStandaloneRegisterHandlerTest extends KernelTestCase
             })
             ->build();
 
-        $ContactDto = new ContactDto();
-        $ContactDto->setSalutation('FEMALE');
-        $ContactDto->setMarketingInformation(false);
+        $contactDto = new ContactDto();
+        $contactDto->setSalutation('FEMALE');
+        $contactDto->setMarketingInformation(false);
 
-        $jsonContent = $serializer->serialize($ContactDto, 'json');
+        $jsonContent = $serializer->serialize($contactDto, 'json');
 
         $this->assertJsonStringEqualsJsonString(
             '{
