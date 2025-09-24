@@ -10,10 +10,11 @@ use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class IndexController extends AbstractController
 {
-    public function __construct(private CrmSerializerService $crmSerializerService) {}
+    public function __construct(private readonly SerializerInterface $serializer) {}
 
     #[Route('/', name: 'app_index')]
     public function index(): Response
@@ -26,7 +27,7 @@ class IndexController extends AbstractController
         $contactDto->setBirthdate(new DateTime('1989-11-09'));
         $contactDto->setMarketingInformation(new BooleanValue(true));
 
-        $array = $this->crmSerializerService->normalize($contactDto);
+        $array = $this->serializer->normalize($contactDto);
         /*
             Array
             (
@@ -40,7 +41,7 @@ class IndexController extends AbstractController
 
         */
 
-        $contactDtoFromArray = $this->crmSerializerService->denormalize($array);
+        $contactDtoFromArray = $this->serializer->denormalize($array, ContactDto::class);
         /*
             App\Dto\ContactDto Object
             (
@@ -67,7 +68,7 @@ class IndexController extends AbstractController
             )
         */
 
-        $json = $this->crmSerializerService->serialize($contactDto);
+        $json = $this->serializer->serialize($contactDto, 'json');
         /*
             {
                 "1": "Jane",
@@ -79,7 +80,7 @@ class IndexController extends AbstractController
             }
         */
 
-        $contactDtoFromJson = $this->crmSerializerService->deserialize($json);
+        $contactDtoFromJson = $this->serializer->deserialize($json, ContactDto::class, 'json');
         /*
             App\Dto\ContactDto Object
             (
